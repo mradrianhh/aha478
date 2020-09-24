@@ -1,3 +1,4 @@
+
 def read_csv(filename: str, skiplines = 0) -> []:
     """
         Reads the csv-file found by "filename" and skips the number of lines given by "skiplines".
@@ -17,7 +18,7 @@ def read_csv(filename: str, skiplines = 0) -> []:
 
 csv = read_csv("trees.csv", 1)
 
-# Too basic.
+# Too basic
 csv_floats = []
 for values in csv:
     arr = []

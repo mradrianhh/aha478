@@ -25,7 +25,7 @@ def read_first_column(filename: str) -> []:
 
     with open(filename, "r") as file:
         for line in file: # loop through the lines, split it by "|" and assign the value from the first column to the result-list.
-            values = line.replace("\t", "").split("|")
+            values = line.replace("\t", "").replace("\n", "").split("|")
             result.append(values[1]) # values[0] is the "" before the first "|".
 
     return result
@@ -34,3 +34,4 @@ def read_first_column(filename: str) -> []:
 print(read_first_column("data.txt"))
 
         
+
