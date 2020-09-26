@@ -4,15 +4,11 @@ import numpy as np
 x = np.arange(-49, 51).reshape((10, 10))
 print(x<0)
 
-print("\n")
-
+# Creates a new array of boolean values determined by the evaluation the boolean expression.
 y = (x**2 - 500) > 0
-print(y)
 
+# Sets every value in x that satifies the boolean expression given by y to 0.
 x[y] = 0
-print(x)
 
-a = np.where(True,y,x)
-a[True] = np.nan
-a[False] = x**2 - 0.2
-print(a)
+# Loops through y and checks if its True, if it is, set the value to np.nan, else, x^2-0.2.
+z = np.where(y, np.nan, x**2-0.2)
