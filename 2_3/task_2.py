@@ -16,7 +16,7 @@ def load_to_dict(filename: str) -> {}:
                 # To keep commas in the name, we add commas until we're done concatenating the name, then we subtract the last comma
                 # separating the name and the following commas.
                 key = ""
-                starting_index = 1
+                starting_index = 0
                 for word in line:
                     if not word.isnumeric():
                         key += word + ","
@@ -51,7 +51,17 @@ def rank_by_avg_income(average_income: {}) -> {}:
     return result
 
 if __name__ == "__main__":
-    arr = rank_by_avg_income(find_average_income(load_to_dict("income_per_person.csv")))
+    income_per_person = load_to_dict("income_per_person.csv")
+    plt.plot(income_per_person["Time"], income_per_person["Norway"], label="Norway")
+    plt.plot(income_per_person["Time"], income_per_person["Sweden"], label="Sweden")
+    plt.xlabel("Time")
+    plt.ylabel("Income")
+    plt.legend()
+    plt.title("Income per person over time")
+    plt.show()
+
+    arr = rank_by_avg_income(find_average_income(income_per_person))
+
     
     for key in arr:
         print(f"{key}: {arr[key]}")
