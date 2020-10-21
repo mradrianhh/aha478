@@ -7,9 +7,9 @@ def load_to_dict(filename: str) -> {}:
     with open(filename, "r") as file:
         lines = file.readlines() # store each line of the file in a list
         for i in range(len(lines)): # loop by range-function so we can check index.
-            line = lines[i].replace("\n", "").split(",")
+            elements = lines[i].replace("\n", "").split(",")
             if i == 0: # if it's the first line, set key to "Time".
-                income_per_person["Time"] = np.array([int(line[j]) for j in range(1, len(line))])# Set ndarray of all values on the line except the first as the value to key.
+                income_per_person["Time"] = np.array([int(elements[j]) for j in range(1, len(elements))]) # Set ndarray of all values on the line except the first as the value to key.
             else:
                 # Some countries have name with commas, which means we need to account for that by checking whether or not the value is numeric or not.
                 # If the value isnt numeric, we know that it's part of the name, or the key, so we concatenate until we meet a numeric value.
@@ -17,15 +17,14 @@ def load_to_dict(filename: str) -> {}:
                 # separating the name and the following commas.
                 key = ""
                 starting_index = 0
-                for word in line:
-                    if not word.isnumeric():
-                        key += word + ","
+                for element in elements:
+                    if not element.isnumeric():
+                        key += element + ","
                         starting_index += 1
                     else: 
                         break
                 key = key[:len(key)-1]
-
-                income_per_person[key] = np.array([int(line[j]) for j in range(starting_index, len(line))])
+                income_per_person[key] = np.array([int(elements[j]) for j in range(starting_index, len(elements))])
 
     return income_per_person
 
@@ -46,7 +45,7 @@ def rank_by_avg_income(average_income: {}) -> {}:
     temp = sorted(average_income.items(), key=lambda x: x[1]) # sorts the dictionary by value and stores the value and the key as a tuple in a list.
 
     for i in range(len(temp)):
-        result[len(temp) - i] = temp[i][0] # store the firts value of the i-th typle, the country, in the value of the key being it's position in the ranking.
+        result[len(temp) - i] = temp[i][0] # store the first value of the i-th typle, the country, in the value of the key being it's position in the ranking.
 
     return result
 
@@ -59,6 +58,8 @@ if __name__ == "__main__":
     plt.legend()
     plt.title("Income per person over time")
     plt.show()
+
+    print(find_average_income(income_per_person))
 
     arr = rank_by_avg_income(find_average_income(income_per_person))
 
