@@ -1,5 +1,7 @@
 import math
 from scipy.misc import derivative
+import numpy as np
+from matplotlib import pyplot as plt
 
 class ThirdDerivative():
 
@@ -12,6 +14,11 @@ class ThirdDerivative():
         return (-0.5*self.function(x-2*h) + self.function(x-h) - self.function(x+h) + 0.5*(self.function(x+2*h))) / h**3
 
 if __name__ == "__main__":
-    print(ThirdDerivative(lambda x: math.cos(x)).calculate(0))
-    print(derivative(lambda x: math.cos(x), 0))
+
+    x = np.linspace(0, 10)
+
+    plt.plot(x, ThirdDerivative(lambda x: np.cos(x)).calculate(x), label="Appromixation")
+    plt.plot(x, derivative(lambda x: np.cos(x), x, n=3, order=5), label="Exact")
+    plt.legend()
+    plt.show()
     
