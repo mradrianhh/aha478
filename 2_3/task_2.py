@@ -35,10 +35,7 @@ def find_average_income(income_per_person: {}) -> {}:
         if key == "Time":
             continue # jump over "Time" key
         else:
-            total = 0 # find average for each key and store it in result.
-            for value in income_per_person[key]:
-                total += value
-            result[key] = total/len(income_per_person[key])
+            result[key] = np.mean(income_per_person[key]) # Calculate mean of list associated with key.
     return result
 
 def rank_by_avg_income(average_income: {}) -> {}:
@@ -62,6 +59,7 @@ if __name__ == "__main__":
 
     arr = rank_by_avg_income(find_average_income(income_per_person))
 
+    print(arr)
     
     for key in arr:
         print(f"{key}: {arr[key]}")
