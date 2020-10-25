@@ -1,0 +1,11 @@
+# Response codes
+PASS = "PASS"
+PLACE = "PLACE"
+DRAW = "DRAW"
+INVALID = "INVALID"
+VALID = "VALID"
+QUIT = "QUIT"
+START = "START"
+BACK = "BACK"
+
+__all__ = ["PASS", "PLACE", "DRAW", "INVALID", "VALID", "QUIT", "START", "BACK"]

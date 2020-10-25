@@ -17,3 +17,6 @@ class Card():
 
     def get_value(self):
         return self.__value
+
+    def __str__(self):
+        print(self.get_name())
